@@ -23,6 +23,7 @@ import App from './../components/App'
 const serverRenderer = ({clientStats,serverStats,foo}) =>{
  
     return(req,res,next)=>{
+         
                 res.status(200).send(`
                     <!doctype html>
                     <html>
@@ -36,7 +37,7 @@ const serverRenderer = ({clientStats,serverStats,foo}) =>{
                    </div>
                    <div>
                    ----  client side ----
-                    <script src="/client.js"></script>
+           
                     </div>
                     </html>
                 `)

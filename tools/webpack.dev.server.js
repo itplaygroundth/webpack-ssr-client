@@ -1,10 +1,15 @@
 const express = require('express')
-const app = express()
+const path = require('path')
+ 
+var expressStaticGzip = require('express-static-gzip');
+var app = express();
+console.log(path.join(__dirname,'../dist/static'))
+app.use('/', expressStaticGzip(path.join(__dirname,'../dist/static'), {
+ enableBrotli: true,
+ index:false
+}));
+ 
 
-app.get('/',(req,res)=>{
-    res.status(200).send("Hello World")
-})
-
-app.listen(3000,()=>{
-    console.log("server running on port http://localhost:3000")
+app.listen(3030,()=>{
+    console.log("server running on port http://localhost:3030")
 })

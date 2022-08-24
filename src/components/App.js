@@ -84,9 +84,12 @@ class App extends React.PureComponent {
         return this.props.context;
       }
       render(){
+        const {scripts} = this.props
+       
         return(
             <>
             {this.props.children}
+            {scripts.map(script => <script key={script} src={script} />)}
             </>
         )
       }
