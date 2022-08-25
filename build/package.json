@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "assert": "^2.0.0",
+    "autoprefixer": "^10.4.8",
+    "buffer": "^6.0.3",
+    "classnames": "^2.3.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "express-request-language": "^1.1.15",
+    "express-static-gzip": "^2.1.7",
+    "fs-extra": "^10.1.0",
+    "graphql": "^16.6.0",
+    "history": "^5.3.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recompose": "^0.30.0",
+    "sequelize": "^6.21.4",
+    "universal-router": "^9.1.0",
+    "webpack": "^5.74.0",
+    "webpack-dev-middleware": "^5.3.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -41,8 +41,12 @@ export const readDir = (pattern, options) => new Promise((resolve, reject) =>
   globPkg(pattern, options, (err, result) => (err ? reject(err) : resolve(result))),
 );
 
+// export const makeDir = name => new Promise((resolve, reject) => {
+//   mkdirp(name, err => (err ? reject(err) : resolve()));
+// });
+
 export const makeDir = name => new Promise((resolve, reject) => {
-  mkdirp(name, err => (err ? reject(err) : resolve()));
+  mkdirp(name).then(made => resolve(made))
 });
 
 export const glob = pattern => new Promise((resolve, reject) => {

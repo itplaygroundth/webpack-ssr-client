@@ -33,11 +33,12 @@ const serverRenderer = ({clientStats,serverStats,foo}) =>{
                     <body>
                     <div>
                     ---- server side ----
-                    <div id="root"></div>
+                    <div id="root">${renderToString(React.createElement(App))}</div>
                    </div>
                    <div>
                    ----  client side ----
-           
+                    <script src='main.js'></script>
+                    <script src='vendor.js'></script>
                     </div>
                     </html>
                 `)

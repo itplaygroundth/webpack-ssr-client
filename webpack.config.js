@@ -1,22 +1,23 @@
  
 const { join, resolve } = require('path')
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
+
+// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+// const smp = new SpeedMeasurePlugin();
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 //const paths = require('./config/path.default')
 const zlib = require("zlib");
 const CompressionPlugin = require('compression-webpack-plugin')
-const BrotliPlugin = require('brotli-webpack-plugin');
+// const BrotliPlugin = require('brotli-webpack-plugin');
 import { webpackSource, webpackDestination, webpackPublicPath } from './config/path.default'
 import  pkg from './package.json'
-import  {BundleAnalyzerPlugin}  from 'webpack-bundle-analyzer';
+//import  {BundleAnalyzerPlugin}  from 'webpack-bundle-analyzer';
  
-const __DEV__ = !process.argv.includes('--production');
+export const __DEV__ = !process.argv.includes('--production');
 const isVerbose = process.argv.includes('--verbose');
 console.log("DEV:",__DEV__);
 
-  const config =  smp.wrap({
+export  const config =  {
       name: 'config',
       output: {
         path: webpackDestination,
@@ -120,17 +121,25 @@ console.log("DEV:",__DEV__);
         minRatio: 0.8,
         deleteOriginalAssets: false,
       }),
-        new BrotliPlugin({
-        filename: '[path][base].br',
-        test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
-        })
+        // new BrotliPlugin({
+        // filename: '[path][base].br',
+        // test: /\.js$|\.css$|\.html$/,
+        // threshold: 10240,
+        // minRatio: 0.8
+        // })
       
     ],
 
-    devtool: __DEV__?'cheap-module-source-map':'source-map'
-    })
-    module.exports={config,__DEV__}
+    devtool: __DEV__?'cheap-module-source-map':'source-map',
+    node: {
+      console: false,
+      global: false,
+      process: false,
+      Buffer: false,
+      __filename: false,
+      __dirname: false,
+    },
+    }
+    
    
     

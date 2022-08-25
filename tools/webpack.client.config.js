@@ -1,14 +1,15 @@
 const {join} = require('path') 
+import { RentAllAssetCopyPlugin } from './asset-copy'
 import { webpackSource, webpackDestination, webpackPublicPath } from '../config/path.default'
-import   pkg from '../package.json'
-import webpack from 'webpack'
+//import   pkg from '../package.json'
+//import webpack from 'webpack'
 import {config,__DEV__} from './../webpack.config'
 const TerserPlugin = require("terser-webpack-plugin");
 import AssetsPlugin from 'assets-webpack-plugin';
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
+// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+// const smp = new SpeedMeasurePlugin();
 module.exports= 
-smp.wrap({
+{
     name: 'client',
     mode: 'development',
     target:'web',
@@ -24,6 +25,24 @@ smp.wrap({
         
              ...config.module
          
+    },
+    resolve: {
+        extensions: [".ts", ".js"],
+        fallback: {
+            "crypto": false,
+            "fs": false,
+            "path": require.resolve("path-browserify"),
+            "os": require.resolve("os-browserify/browser"),
+            "url": require.resolve("url"),
+            "http": require.resolve("stream-http"),
+            "https": require.resolve("https-browserify"),
+            "stream": require.resolve("stream-browserify"),
+            "assert": require.resolve("assert"),
+            "zlib": false,
+            "util":false,
+            "child_process": false,
+
+        }
     },
     optimization: {
         minimize: __DEV__?false: true,
@@ -41,6 +60,7 @@ smp.wrap({
         },
     },
     plugins:[...config.plugins,
+        new RentAllAssetCopyPlugin(),
         new AssetsPlugin({
             path: webpackDestination,
             filename: 'assets.json',
@@ -56,4 +76,4 @@ smp.wrap({
         // ]
     ,
     devtool: 'cheap-module-source-map',
-})
+}

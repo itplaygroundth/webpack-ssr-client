@@ -1,18 +1,18 @@
  
  
-import { webpackSource, webpackDestination, webpackPublicPath } from '../config/path.default'
-import   pkg from '../package.json'
+//import { webpackSource, webpackDestination, webpackPublicPath } from '../config/path.default'
+//import   pkg from '../package.json'
 import {config,__DEV__} from './../webpack.config'
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
-module.exports =smp.wrap({
+// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+// const smp = new SpeedMeasurePlugin();
+module.exports ={
     name: 'server',
     mode: 'development',
     target: 'node',
-    entry: './src/express/server',
+    entry: './src/server.js',
     output:{
         ...config.output,
-        filename:'server.js',
+        filename:'ssr-server.js',
         libraryTarget:'commonjs2'
     },
     module:{
@@ -31,4 +31,4 @@ module.exports =smp.wrap({
         },
       ],
     devtool: 'source-map'
-})
+}
